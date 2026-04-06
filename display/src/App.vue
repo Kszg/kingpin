@@ -1,11 +1,17 @@
-<script setup></script>
+<script setup>
+import Header from '@/components/Header.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="display">
+    <Header/>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .display {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color);
+  }
+</style>
