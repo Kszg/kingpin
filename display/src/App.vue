@@ -9,9 +9,9 @@ import Header from '@/components/Header.vue';
 </template>
 
 <style scoped>
-  .display {
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--bg-color);
-  }
+.display {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+}
 </style>

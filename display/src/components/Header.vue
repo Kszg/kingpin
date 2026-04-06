@@ -11,44 +11,44 @@
 </template>
 
 <style scoped>
-  .header {
-    width: calc(100vw - 2rem);
-    height: 7rem;
-    background-color: var(--header-color);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-  }
+.header {
+  width: calc(100vw - 2rem);
+  height: 7rem;
+  background-color: var(--header-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
 
-  .route_logo {
-    height: 100%;
-  }
+.route_logo {
+  height: 100%;
+}
 
-  .line_number {
-    background-color: var(--accent-color);
-    color: var(--accent-fg-color);
-    border-radius: 1.5rem;
-    font-size: 4rem;
-    padding: 0.75rem;
-  }
+.line_number {
+  background-color: var(--accent-color);
+  color: var(--accent-fg-color);
+  border-radius: 1.5rem;
+  font-size: 4rem;
+  padding: 0.75rem;
+}
 
-  .line_arrow {
-    fill: var(--text-main-color);
-    height: 50%;
-  }
+.line_arrow {
+  fill: var(--text-main-color);
+  height: 50%;
+}
 
-  .destination {
-    color: var(--text-main-color);
-    font-size: 4rem;
-    line-height: 4rem;
-    flex: 1;
-  }
+.destination {
+  color: var(--text-main-color);
+  font-size: 4rem;
+  line-height: 4rem;
+  flex: 1;
+}
 
-  .clock {
-    color: var(--text-main-color);
-    opacity: 50%;
-    font-size: 3.5rem;
-    text-align: center;
-  }
+.clock {
+  color: var(--text-main-color);
+  opacity: 50%;
+  font-size: 3.5rem;
+  text-align: center;
+}
 </style>
