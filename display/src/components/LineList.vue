@@ -9,16 +9,12 @@ const props = defineProps({
 function getElements() {
   let ret = [];
   
-  // console.log("props.lines", props.lines);
-
   props.lines.forEach(category => {
     ret.push({
       type: "icon",
       iconPath: category.iconPath
     });
     
-    console.log("category.lines", category.lines);
-
     if (category.lines) {
       category.lines.forEach(line => {
         ret.push({
