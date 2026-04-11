@@ -1,5 +1,6 @@
 <script setup>
 import Header from '@/components/Header.vue';
+import Footer from './components/Footer.vue';
 import Stop from './components/Stop.vue';
 </script>
 
@@ -15,6 +16,7 @@ import Stop from './components/Stop.vue';
       </div>
       <Stop name="Délegyháza, vasútálomás dkjfjhgdsjkgjsdfkg sdfg " arrival="13:42" departure="13:45" :is_last="false" :is_active="true"/>
     </div>
+    <Footer/>
   </div>
 </template>
 
@@ -23,5 +25,12 @@ import Stop from './components/Stop.vue';
   width: 100vw;
   height: 100vh;
   background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.display .stops {
+  flex: 1;
+  overflow: auto;
 }
 </style>
