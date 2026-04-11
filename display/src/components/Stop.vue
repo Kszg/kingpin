@@ -6,19 +6,19 @@ const props = defineProps({
   },
   arrival: {
     type: String,
-    required: true
+    required: false
   },
   departure: {
     type: String,
-    required: true
+    required: false
   },
   is_last: {
     type: Boolean,
-    required: true
+    required: false
   },
   is_active: {
     type: Boolean,
-    required: true
+    required: false
   }
 });
 </script>
