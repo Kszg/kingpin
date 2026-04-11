@@ -48,7 +48,7 @@
 .clock {
   color: var(--text-main-color);
   opacity: 50%;
-  font-size: 3.5rem;
+  font-size: 4rem;
   text-align: center;
 }
 </style>
