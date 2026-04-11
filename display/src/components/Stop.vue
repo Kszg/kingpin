@@ -46,6 +46,10 @@ const props = defineProps({
   height: 7rem;
 }
 
+.stop .timestamps {
+  width: max-content;
+}
+
 .stop .timestamps > * {
   color: #80818D;
   font-size: 3rem;
@@ -57,7 +61,7 @@ const props = defineProps({
 
 .stop .marker {
   border-radius: 50%;
-  width: 3rem;
+  width: 2.5rem;
   aspect-ratio: 1;
   border: 1.5rem solid var(--accent-color);
   margin-inline: 2rem;
@@ -69,14 +73,15 @@ const props = defineProps({
   border-left: 1.5rem solid var(--accent-color);
   height: 6rem;
   position: absolute;
-  transform: translateX(40%) translateY(-6.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6.5rem);
 }
 
 .stop .stop_name {
   color: var(--text-main-color);
   font-size: 4rem;
   line-height: 4rem;
-  width: 100%;
+  flex: 1;
   margin: 0;
 }
 
