@@ -13,7 +13,7 @@ import Stop from './components/Stop.vue';
         <Stop name="Délegyháza, II. tó" arrival="13:50" :is_last="false"/>
         <Stop name="Délegyháza, vasútálomás dkjfjhgdsjkgjsdfkg sdfg " arrival="13:42" departure="13:45" :is_last="false"/>
       </div>
-      <Stop name="Délegyháza, vasútálomás dkjfjhgdsjkgjsdfkg sdfg " arrival="13:42" departure="13:45" :is_last="false"/>
+      <Stop name="Délegyháza, vasútálomás dkjfjhgdsjkgjsdfkg sdfg " arrival="13:42" departure="13:45" :is_last="false" :is_active="true"/>
     </div>
   </div>
 </template>
