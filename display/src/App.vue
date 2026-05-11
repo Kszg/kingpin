@@ -36,5 +36,9 @@ import StopRequestIndicator from './components/StopRequestIndicator.vue';
 .stop_area {
   flex: 1;
   display: flex;
+  overflow: auto;
+  scrollbar-width: none;
+  margin-bottom: 1rem;
+  margin-right: 11rem;
 }
 </style>

@@ -18,8 +18,10 @@ const props = defineProps({
 .stop_request_indicator {
   border: 0.5rem solid white;
   border-radius: 2rem;
-  display: block;
-  margin: auto 1rem 1rem 1rem;
+  height: max-content;
+  position: absolute;
+  bottom: 7rem;
+  right: 1rem;
 }
 
 .stop_request_indicator img {
