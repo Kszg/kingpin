@@ -1,6 +1,8 @@
 <script setup>
 import FooterLineList from './FooterLineList.vue';
 
+import { ref, useTemplateRef, onMounted, onUnmounted } from 'vue';
+
 const connections = [
   {
     iconPath: "/img/flixbus.png",
@@ -46,12 +48,47 @@ const connections = [
     iconPath: "/img/ic.png",
   }
 ]
+
+const connectionsOverflowing = ref(false);
+const connectionsRef = useTemplateRef("connections");
+
+function onClientResized() {
+  connectionsOverflowing.value = connectionsRef.value.scrollWidth > connectionsRef.value.clientWidth;
+  console.log(`${connectionsRef.value.scrollWidth} > ${connectionsRef.value.clientWidth}: ${connectionsRef.value.scrollWidth > connectionsRef.value.clientWidth} = ${connectionsOverflowing.value}`)
+}
+
+onMounted(() => {
+  window.addEventListener('resize', onClientResized);
+  setTimeout(onClientResized, 0);
+  autoscroll();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', onClientResized);
+});
+
+const scrollSpeed = 0;
+let animationId;
+
+function autoscroll() {
+  const em = connectionsRef.value;
+
+  em.scrollLeft += scrollSpeed;
+
+  if (em.scrollLeft >= em.scrollWidth / 2) {
+    em.scrollLeft = 0;
+  }
+
+  animationId = requestAnimationFrame(autoscroll);
+}
 </script>
 
 <template>
   <div class="footer">
-    <div class="connections">
+    <div class="connections" ref="connections">
       <FooterLineList :lines="connections"/>
+      <p class="connection_loop_separator">***</p>
+      <FooterLineList :lines="connections" v-if="connectionsOverflowing"/>
     </div>
     <img class="logo" src="/img/logo.png" alt="LOGO">
   </div>
@@ -78,6 +115,14 @@ const connections = [
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+.footer .connection_loop_separator {
+  font-size: 4.5rem;
+  color: var(--text-main-color);
+  margin-left: 12rem;
+  margin-right: 7rem;
+  margin-block: 0;
 }
 
 .footer .logo {
