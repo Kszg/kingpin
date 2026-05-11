@@ -1,5 +1,5 @@
 <script setup>
-import LineList from './LineList.vue';
+import FooterLineList from './FooterLineList.vue';
 
 const connections = [
   {
@@ -51,7 +51,7 @@ const connections = [
 <template>
   <div class="footer">
     <div class="connections">
-      <LineList :lines="connections"/>
+      <FooterLineList :lines="connections"/>
     </div>
     <img class="logo" src="/img/logo.png" alt="LOGO">
   </div>
