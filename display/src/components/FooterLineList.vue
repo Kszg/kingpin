@@ -35,13 +35,22 @@ const elements = getElements();
 </script>
 
 <template>
-  <div :class="{container: true, label_container: e.type == 'label'}" v-for="(e, i) in elements" :key="i" :style="e.type == 'label' ? `background-color: ${e.bg}; color: ${e.fg};` : ''">
-    <img class="icon" v-if="e.type == 'icon'" :src="e.iconPath" alt="Service icon">
-    <p class="label" v-if="e.type == 'label'">{{ e.text }}</p>
+  <div class="connections_instance" ref="instancecontainer">
+    <div :class="{container: true, label_container: e.type == 'label'}" v-for="(e, i) in elements" :key="i" :style="e.type == 'label' ? `background-color: ${e.bg}; color: ${e.fg};` : ''">
+      <img class="icon" v-if="e.type == 'icon'" :src="e.iconPath" alt="Service icon">
+      <p class="label" v-if="e.type == 'label'">{{ e.text }}</p>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.connections_instance {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .container .icon {
   height: 5rem;
   margin-left: 5rem;

@@ -1,7 +1,6 @@
 <script setup>
 import FooterLineList from './FooterLineList.vue';
-
-import { ref, useTemplateRef, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const connections = [
   {
@@ -49,12 +48,14 @@ const connections = [
   }
 ]
 
+const connectionsRef = ref();
+const lineListRef = ref();
+const connectionLoopSeparatorRef = ref();
+
 const connectionsOverflowing = ref(false);
-const connectionsRef = useTemplateRef("connections");
 
 function onClientResized() {
   connectionsOverflowing.value = connectionsRef.value.scrollWidth > connectionsRef.value.clientWidth;
-  console.log(`${connectionsRef.value.scrollWidth} > ${connectionsRef.value.clientWidth}: ${connectionsRef.value.scrollWidth > connectionsRef.value.clientWidth} = ${connectionsOverflowing.value}`)
 }
 
 onMounted(() => {
@@ -67,27 +68,31 @@ onUnmounted(() => {
   window.removeEventListener('resize', onClientResized);
 });
 
-const scrollSpeed = 0;
+const scrollSpeed = 3;
 let animationId;
 
 function autoscroll() {
   const em = connectionsRef.value;
+  const listEm = lineListRef.value.$el;
+  const sepEm = connectionLoopSeparatorRef.value;
 
   em.scrollLeft += scrollSpeed;
 
-  if (em.scrollLeft >= em.scrollWidth / 2) {
+  if (em.scrollLeft >= (listEm.clientWidth + sepEm.clientWidth)) {
     em.scrollLeft = 0;
   }
 
-  animationId = requestAnimationFrame(autoscroll);
+  if (connectionsOverflowing) {
+    animationId = requestAnimationFrame(autoscroll);
+  }
 }
 </script>
 
 <template>
   <div class="footer">
-    <div class="connections" ref="connections">
-      <FooterLineList :lines="connections"/>
-      <p class="connection_loop_separator">***</p>
+    <div class="connections" ref="connectionsRef">
+      <FooterLineList :lines="connections" ref="lineListRef"/>
+      <p class="connection_loop_separator" ref="connectionLoopSeparatorRef">***</p>
       <FooterLineList :lines="connections" v-if="connectionsOverflowing"/>
     </div>
     <img class="logo" src="/img/logo.png" alt="LOGO">
@@ -120,9 +125,7 @@ function autoscroll() {
 .footer .connection_loop_separator {
   font-size: 4.5rem;
   color: var(--text-main-color);
-  margin-left: 12rem;
-  margin-right: 7rem;
-  margin-block: 0;
+  padding: 0 10rem;
 }
 
 .footer .logo {
