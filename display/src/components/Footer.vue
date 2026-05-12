@@ -55,13 +55,15 @@ const connectionLoopSeparatorRef = ref();
 const connectionsOverflowing = ref(false);
 
 function onClientResized() {
-  connectionsOverflowing.value = connectionsRef.value.scrollWidth > connectionsRef.value.clientWidth;
+  connectionsOverflowing.value = lineListRef.value.$el.clientWidth > connectionsRef.value.clientWidth;
+  
+  if (connectionsOverflowing.value) startScrollAnim();
+  else stopScrollAnim();
 }
 
 onMounted(() => {
   window.addEventListener('resize', onClientResized);
   setTimeout(onClientResized, 0);
-  autoscroll();
 });
 
 onUnmounted(() => {
@@ -69,9 +71,19 @@ onUnmounted(() => {
 });
 
 const scrollSpeed = 3;
-let animationId;
+let scrollAnimationId = null;
 
-function autoscroll() {
+function startScrollAnim() {
+  if (scrollAnimationId != null) return;
+  scrollAnimFrame();
+}
+
+function stopScrollAnim() {
+  cancelAnimationFrame(scrollAnimationId);
+  scrollAnimationId = null;
+}
+
+function scrollAnimFrame() {
   const em = connectionsRef.value;
   const listEm = lineListRef.value.$el;
   const sepEm = connectionLoopSeparatorRef.value;
@@ -82,9 +94,7 @@ function autoscroll() {
     em.scrollLeft = 0;
   }
 
-  if (connectionsOverflowing) {
-    animationId = requestAnimationFrame(autoscroll);
-  }
+  scrollAnimationId = requestAnimationFrame(scrollAnimFrame);
 }
 </script>
 
@@ -92,7 +102,7 @@ function autoscroll() {
   <div class="footer">
     <div class="connections" ref="connectionsRef">
       <FooterLineList :lines="connections" ref="lineListRef"/>
-      <p class="connection_loop_separator" ref="connectionLoopSeparatorRef">***</p>
+      <p class="connection_loop_separator" ref="connectionLoopSeparatorRef" v-show="connectionsOverflowing">***</p>
       <FooterLineList :lines="connections" v-if="connectionsOverflowing"/>
     </div>
     <img class="logo" src="/img/logo.png" alt="LOGO">
